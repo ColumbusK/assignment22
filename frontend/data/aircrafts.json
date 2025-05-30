@@ -1,0 +1,23 @@
+[
+  {
+    "aircraftId": "SJ30i",
+    "model": "SyberJet SJ30i",
+    "capacity": 6,
+    "quantity": 1,
+    "image": "https://i.imgur.com/TmY3Jhr.jpeg"
+  },
+  {
+    "aircraftId": "SF50",
+    "model": "Cirrus SF50",
+    "capacity": 4,
+    "quantity": 2,
+    "image": "https://i.imgur.com/9AZ6eII.jpeg"
+  },
+  {
+    "aircraftId": "HJE",
+    "model": "HondaJet Elite",
+    "capacity": 5,
+    "quantity": 2,
+    "image": "https://i.imgur.com/Pm15BiJ.jpeg"
+  }
+]

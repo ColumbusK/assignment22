@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Dairy Flat",
+    "airport_name": "Dairy Flat Airport",
+    "icao_code": "NZNE",
+    "country": "New Zealand",
+    "timezone": "Pacific/Auckland"
+  },
+  {
+    "name": "Rotorua",
+    "airport_name": "Rotorua Regional Airport",
+    "icao_code": "NZRO",
+    "country": "New Zealand",
+    "timezone": "Pacific/Auckland"
+  },
+  {
+    "name": "Lake Tekapo",
+    "airport_name": "Tekapo Airport",
+    "icao_code": "NZTL",
+    "country": "New Zealand",
+    "timezone": "Pacific/Auckland"
+  },
+  {
+    "name": "Chatham Islands",
+    "airport_name": "Tuuta Airport",
+    "icao_code": "NZCI",
+    "country": "New Zealand",
+    "timezone": "Pacific/Chatham"
+  },
+  {
+    "name": "Claris",
+    "airport_name": "Great Barrier Aerodrome",
+    "icao_code": "NZGB",
+    "country": "New Zealand",
+    "timezone": "Pacific/Auckland"
+  },
+  {
+    "name": "Melbourne",
+    "airport_name": "Melbourne Airport",
+    "icao_code": "YMML",
+    "country": "Australia",
+    "timezone": "Australia/Melbourne"
+  }
+]

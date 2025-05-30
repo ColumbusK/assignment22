@@ -1,0 +1,103 @@
+[
+  {
+    "routeName": "Melbourne Prestige",
+    "description": "A weekly prestige service to Melbourne using the SyberJet aircraft. Departs Dairy Flat on Friday mid-morning and returns from Melbourne on Sunday mid-afternoon.",
+    "from": "NZNE",
+    "to": "YMML",
+    "aircraftId": "SJ30i",
+    "days": [
+      "Friday"
+    ],
+    "returnDays": [
+      "Sunday"
+    ],
+    "departTime": "10:30",
+    "returnTime": "15:30",
+    "flightTimeMinutes": 240,
+    "type": "prestige"
+  },
+  {
+    "routeName": "Rotorua Weekday Shuttle",
+    "description": "A weekday shuttle service to Rotorua using a Cirrus aircraft. Two round trips each weekday: early morning outbound with a quick return, then late afternoon outbound with evening return.",
+    "from": "NZNE",
+    "to": "NZRO",
+    "aircraftId": "SF50",
+    "days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "returnDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "departTime": "07:00",
+    "returnTime": "08:30",
+    "departTimePM": "16:30",
+    "returnTimePM": "18:00",
+    "flightTimeMinutes": 60,
+    "type": "shuttle"
+  },
+  {
+    "routeName": "Great Barrier Island (Claris) Service",
+    "description": "A three times weekly service to Great Barrier Island's Claris Airport using a Cirrus aircraft. Departs Dairy Flat on Monday, Wednesday, and Friday mornings. Returns from Claris on Tuesday, Thursday, and Saturday mornings.",
+    "from": "NZNE",
+    "to": "NZCI",
+    "aircraftId": "SF50",
+    "days": [
+      "Monday",
+      "Wednesday",
+      "Friday"
+    ],
+    "returnDays": [
+      "Tuesday",
+      "Thursday",
+      "Saturday"
+    ],
+    "departTime": "08:00",
+    "returnTime": "08:00",
+    "flightTimeMinutes": 90,
+    "type": "island"
+  },
+  {
+    "routeName": "Chatham Islands Service",
+    "description": "A twice weekly service to Tuuta Airport in the Chatham Islands using a HondaJet. Outbound flights leave on Tuesday and Friday; return flights on Wednesday and Saturday.",
+    "from": "NZNE",
+    "to": "NZCI",
+    "aircraftId": "HJE",
+    "days": [
+      "Tuesday",
+      "Friday"
+    ],
+    "returnDays": [
+      "Wednesday",
+      "Saturday"
+    ],
+    "departTime": "09:30",
+    "returnTime": "09:30",
+    "flightTimeMinutes": 180,
+    "type": "regional"
+  },
+  {
+    "routeName": "Lake Tekapo Scenic Route",
+    "description": "A weekly scenic flight to Lake Tekapo using a HondaJet. Departs Dairy Flat on Monday and returns from Lake Tekapo on Tuesday.",
+    "from": "NZNE",
+    "to": "NZTL",
+    "aircraftId": "HJE",
+    "days": [
+      "Monday"
+    ],
+    "returnDays": [
+      "Tuesday"
+    ],
+    "departTime": "10:00",
+    "returnTime": "10:00",
+    "flightTimeMinutes": 120,
+    "type": "scenic"
+  }
+]
