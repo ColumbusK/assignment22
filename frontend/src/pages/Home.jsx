@@ -1,8 +1,7 @@
-// pages/Home.tsx
-import React, { useState, useEffect } from "react";
+// pages/Home.jsx
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png"; // Optional: your logo image
-
+import logo from "../assets/logo.png";
 import { fetchRandomUser } from "../api/user";
 
 const Home = () => {
@@ -10,59 +9,89 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const cached = localStorage.getItem("user");
-    if (cached) {
-      setUser(JSON.parse(cached));
-    } else {
-      fetchRandomUser()
-        .then((data) => {
-          setUser(data);
-          localStorage.setItem("user", JSON.stringify(data));
-        })
-        .catch((err) => {
-          console.error("Error loading user", err);
-        });
-    }
+    (async () => {
+      try {
+        const cached = localStorage.getItem("user");
+        const data = cached ? JSON.parse(cached) : await fetchRandomUser();
+        setUser(data);
+        if (!cached) localStorage.setItem("user", JSON.stringify(data));
+      } catch (e) {
+        console.error(e);
+      }
+    })();
   }, []);
 
-  console.log("User data:", user);
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-white px-4">
-      <div className="w-full max-w-2xl flex flex-col items-center">
-        <img
-          src={logo}
-          alt="DairyJet Logo"
-          className="w-28 h-28 mb-6 drop-shadow-lg"
-        />
-        <h1 className="text-5xl font-extrabold text-blue-900 mb-4 text-center leading-tight tracking-wide">
-          {user
-            ? `Hello, ${user.title} ${user.last_name}!`
-            : "Welcome to DairyJet"}
-        </h1>
+    <div className="relative h-screen w-full overflow-hidden font-sans bg-gray-700">
+      {/* Hero Background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center filter brightness-75"
+        style={{
+          backgroundImage: "url(/assets/hero-bg.jpg)",
+        }}
+      />
 
-        <h1 className="text-5xl font-extrabold text-blue-900 mb-4 text-center leading-tight tracking-wide">
-          Welcome to DairyJet Online Ticketing System
-        </h1>
-        <p className="text-xl text-gray-700 mb-10 text-center">
-          ✈️ Comfortable · Fast · Tailored Regional Air Service
-        </p>
-        <div className="flex gap-4">
+      {/* Top Nav */}
+      <header className="relative z-10 flex items-center justify-between px-8 py-4">
+        <div className="flex items-center">
+          <img src={logo} alt="DairyJet" className="h-10 w-auto" />
+          {user && (
+            <span className="ml-4 text-white text-lg">
+              Hello,{" "}
+              <strong>
+                {user.title} {user.last_name}
+              </strong>
+            </span>
+          )}
+        </div>
+
+        <nav className="flex items-center space-x-6 text-white">
           <button
             onClick={() => navigate("/search")}
-            className="px-10 py-3 bg-blue-600 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-blue-700 hover:scale-105 transition-all duration-300"
+            className="hover:underline"
           >
-            Book Now
+            Flights
           </button>
-
           <button
             onClick={() => navigate("/my-bookings")}
-            className="px-10 py-3 bg-white text-blue-600 border-2 border-blue-600 text-lg font-semibold rounded-full shadow-lg hover:bg-blue-50 hover:scale-105 transition-all duration-300"
+            className="hover:underline"
           >
             My Bookings
           </button>
+        </nav>
+      </header>
+
+      {/* Hero Content Card */}
+      <div className="relative z-10 flex items-center justify-center h-full px-4">
+        <div className="backdrop-blur-md bg-white/20 border border-white/30 rounded-3xl max-w-md p-8 text-center">
+          <h1 className="text-5xl font-extrabold text-white mb-4 drop-shadow-lg">
+            Fly Your Way
+          </h1>
+          <p className="text-lg text-white/90 mb-6">
+            Discover fast, local air routes with DairyJet’s custom booking
+            experience.
+          </p>
+          <div className="flex justify-center gap-4">
+            <button
+              onClick={() => navigate("/search")}
+              className="px-6 py-3 bg-gradient-to-r from-teal-400 to-blue-500 text-white rounded-full font-medium transform hover:scale-105 transition"
+            >
+              Book Now
+            </button>
+            <button
+              onClick={() => navigate("/my-bookings")}
+              className="px-6 py-3 bg-blue-400 text-white rounded-full font-medium transform hover:scale-105 transition"
+            >
+              View Bookings
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="absolute bottom-4 w-full text-center text-white/70 text-xs z-10">
+        © {new Date().getFullYear()} DairyJet. All rights reserved.
+      </footer>
     </div>
   );
 };

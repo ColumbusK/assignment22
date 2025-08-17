@@ -29,6 +29,8 @@ const Search = () => {
     const fetchAllFlights = async () => {
       setLoading(true);
       const result = await getAllFlights();
+      console.log("All flights fetched:", result);
+
       setFlights(result);
       setLoading(false);
     };
@@ -51,25 +53,24 @@ const Search = () => {
       : AIRPORTS.filter((d) => d.code === "NZNE");
 
   return (
-    <div className="min-h-screen px-4 py-8 bg-gradient-to-br from-white to-blue-50">
-      <div className="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-md">
-        <h2 className="text-3xl font-bold text-blue-800 mb-6 text-center">
-          Search Flights
+    <div className="min-h-screen px-4 py-10 bg-gradient-to-br from-blue-50 to-white">
+      <div className="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
+        <h2 className="text-4xl font-bold text-indigo-700 mb-8 text-center">
+          ✈️ Search Your Flight
         </h2>
 
-        <div className="flex flex-col gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <div>
             <label className="block text-gray-700 font-medium mb-1">From</label>
             <select
               value={from}
               onChange={(e) => {
                 setFrom(e.target.value);
-                // 如果当前的目的地不合法，自动修正
                 if (e.target.value !== "NZNE" && to !== "NZNE") {
                   setTo("NZNE");
                 }
               }}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400"
             >
               {AIRPORTS.map((d) => (
                 <option key={d.code} value={d.code}>
@@ -84,7 +85,7 @@ const Search = () => {
             <select
               value={to}
               onChange={(e) => setTo(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400"
             >
               {availableDestinations.map((d) => (
                 <option key={d.code} value={d.code}>
@@ -101,20 +102,30 @@ const Search = () => {
             <DatePicker
               selected={date}
               onChange={(d) => setDate(d)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400"
               dateFormat="yyyy-MM-dd"
             />
           </div>
 
-          <button
-            onClick={handleSearch}
-            className="mt-2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
-          >
-            {loading ? "Searching..." : "Search Flights"}
-          </button>
+          <div className="flex items-end">
+            <button
+              onClick={handleSearch}
+              className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold py-2 rounded-lg shadow hover:opacity-90 transition"
+            >
+              {loading ? "Searching..." : "Search"}
+            </button>
+          </div>
         </div>
 
         <div>
+          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+            {loading
+              ? "Fetching flights..."
+              : flights.length > 0
+              ? "Available Flights"
+              : "No Flights Found"}
+          </h3>
+
           {flights.length > 0 ? (
             <div className="space-y-4">
               {flights.map((flight) => (
@@ -127,7 +138,9 @@ const Search = () => {
             </div>
           ) : (
             !loading && (
-              <p className="text-gray-500 text-center">No flights found.</p>
+              <p className="text-gray-500 text-center mt-4">
+                Please adjust search criteria and try again.
+              </p>
             )
           )}
         </div>

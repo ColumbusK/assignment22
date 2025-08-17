@@ -6,7 +6,7 @@ var __commonJS = (cb, mod) => function __require() {
 };
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 var require_index_001 = __commonJS({
-  "assets/index-DcuW1olx.js"(exports, module) {
+  "assets/index-BGxdIbxt.js"(exports, module) {
     function _mergeNamespaces(n, m) {
       for (var i = 0; i < m.length; i++) {
         const e = m[i];
@@ -14332,7 +14332,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     ]);
     var reactDomExports = requireReactDom();
     const ReactDOM = /* @__PURE__ */ getDefaultExportFromCjs(reactDomExports);
-    const logo = "/assets/logo-CZmxDjNJ.png";
+    const logo = "/assets/logo-CxI8kh5g.png";
     function bind(fn, thisArg) {
       return function wrap() {
         return fn.apply(thisArg, arguments);
@@ -16729,50 +16729,87 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       const [user, setUser] = reactExports.useState(null);
       const navigate = useNavigate();
       reactExports.useEffect(() => {
-        const cached = localStorage.getItem("user");
-        if (cached) {
-          setUser(JSON.parse(cached));
-        } else {
-          fetchRandomUser().then((data) => {
+        (async () => {
+          try {
+            const cached = localStorage.getItem("user");
+            const data = cached ? JSON.parse(cached) : await fetchRandomUser();
             setUser(data);
-            localStorage.setItem("user", JSON.stringify(data));
-          }).catch((err) => {
-            console.error("Error loading user", err);
-          });
-        }
+            if (!cached) localStorage.setItem("user", JSON.stringify(data));
+          } catch (e) {
+            console.error(e);
+          }
+        })();
       }, []);
-      console.log("User data:", user);
-      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-white px-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "w-full max-w-2xl flex flex-col items-center", children: [
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative h-screen w-full overflow-hidden font-sans bg-gray-700", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "img",
+          "div",
           {
-            src: logo,
-            alt: "DairyJet Logo",
-            className: "w-28 h-28 mb-6 drop-shadow-lg"
+            className: "absolute inset-0 bg-cover bg-center filter brightness-75",
+            style: {
+              backgroundImage: "url(/assets/hero-bg.jpg)"
+            }
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-5xl font-extrabold text-blue-900 mb-4 text-center leading-tight tracking-wide", children: user ? `Hello, ${user.title} ${user.last_name}!` : "Welcome to DairyJet" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-5xl font-extrabold text-blue-900 mb-4 text-center leading-tight tracking-wide", children: "Welcome to DairyJet Online Ticketing System" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xl text-gray-700 mb-10 text-center", children: "✈️ Comfortable · Fast · Tailored Regional Air Service" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-4", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              onClick: () => navigate("/search"),
-              className: "px-10 py-3 bg-blue-600 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-blue-700 hover:scale-105 transition-all duration-300",
-              children: "Book Now"
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              onClick: () => navigate("/my-bookings"),
-              className: "px-10 py-3 bg-white text-blue-600 border-2 border-blue-600 text-lg font-semibold rounded-full shadow-lg hover:bg-blue-50 hover:scale-105 transition-all duration-300",
-              children: "My Bookings"
-            }
-          )
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: "relative z-10 flex items-center justify-between px-8 py-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: logo, alt: "DairyJet", className: "h-10 w-auto" }),
+            user && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "ml-4 text-white text-lg", children: [
+              "Hello,",
+              " ",
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("strong", { children: [
+                user.title,
+                " ",
+                user.last_name
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "flex items-center space-x-6 text-white", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                onClick: () => navigate("/search"),
+                className: "hover:underline",
+                children: "Flights"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                onClick: () => navigate("/my-bookings"),
+                className: "hover:underline",
+                children: "My Bookings"
+              }
+            )
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative z-10 flex items-center justify-center h-full px-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "backdrop-blur-md bg-white/20 border border-white/30 rounded-3xl max-w-md p-8 text-center", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-5xl font-extrabold text-white mb-4 drop-shadow-lg", children: "Fly Your Way" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-lg text-white/90 mb-6", children: "Discover fast, local air routes with DairyJet’s custom booking experience." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-center gap-4", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                onClick: () => navigate("/search"),
+                className: "px-6 py-3 bg-gradient-to-r from-teal-400 to-blue-500 text-white rounded-full font-medium transform hover:scale-105 transition",
+                children: "Book Now"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                onClick: () => navigate("/my-bookings"),
+                className: "px-6 py-3 bg-blue-400 text-white rounded-full font-medium transform hover:scale-105 transition",
+                children: "View Bookings"
+              }
+            )
+          ] })
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("footer", { className: "absolute bottom-4 w-full text-center text-white/70 text-xs z-10", children: [
+          "© ",
+          (/* @__PURE__ */ new Date()).getFullYear(),
+          " DairyJet. All rights reserved."
         ] })
-      ] }) });
+      ] });
     };
     function r(e) {
       var t, f, n = "";
@@ -30563,6 +30600,13 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         throw error;
       }
     };
+    const formatDuration = (minutes2) => {
+      const h = Math.floor(minutes2 / 60);
+      const m = minutes2 % 60;
+      if (h === 0) return `${m} min`;
+      if (m === 0) return `${h} h`;
+      return `${h} h ${m} min`;
+    };
     const FlightCard = ({ flight, onBook }) => {
       const departureTime = new Date(flight.departureTime).toLocaleString("en-NZ", {
         dateStyle: "medium",
@@ -30574,61 +30618,61 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         timeStyle: "short",
         timeZone: flight.arrivalTimezone
       });
-      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "border border-gray-200 rounded-lg p-4 shadow-md flex flex-col md:flex-row gap-4", children: [
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition hover:shadow-xl p-4 flex flex-col md:flex-row md:items-start", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "img",
           {
             src: flight.routeImage,
             alt: flight.aircraftModel,
-            className: "w-full md:w-48 h-32 object-cover rounded-md"
+            className: "w-full md:w-52 h-40 object-cover rounded-lg"
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { className: "text-xl font-semibold text-blue-700 mb-1", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 px-4 mt-4 md:mt-0", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { className: "text-xl font-bold text-indigo-700", children: [
             flight.departureCity,
             " → ",
             flight.arrivalCity
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-600 mb-1", children: [
-            "Flight: ",
-            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: flight.flightNumber })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-600 mb-1", children: [
-            "Aircraft: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm text-gray-500 mt-1", children: [
+            "Flight ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-medium", children: flight.flightNumber }),
+            " |  ",
             flight.aircraftModel
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-600 mb-1", children: [
-            "Departure: ",
-            departureTime,
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-600 mt-2", children: [
+            "🛫 ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: departureTime }),
             " (",
             flight.departureAirport,
             ")"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-600 mb-1", children: [
-            "Arrival: ",
-            arrivalTime,
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-600", children: [
+            "🛬 ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: arrivalTime }),
             " (",
             flight.arrivalAirport,
             ")"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-600 mb-2", children: [
-            "Duration: ",
-            flight.durationMinutes,
-            " min | Seats Available:",
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-600 mt-2", children: [
+            "⏱ Duration: ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: formatDuration(flight.durationMinutes) }),
+            " |  💺 Seats:",
             " ",
-            flight.availableSeats,
-            "/",
-            flight.totalSeats
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              onClick: onBook,
-              className: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition",
-              children: "Book Now"
-            }
-          )
-        ] })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("strong", { children: [
+              flight.availableSeats,
+              "/",
+              flight.totalSeats
+            ] })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "md:self-start mt-4 md:mt-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            onClick: onBook,
+            className: "flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full shadow hover:scale-105 transition-transform",
+            children: "✈️ Book"
+          }
+        ) })
       ] });
     };
     const AIRPORTS = [
@@ -30650,6 +30694,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         const fetchAllFlights = async () => {
           setLoading(true);
           const result = await getAllFlights();
+          console.log("All flights fetched:", result);
           setFlights(result);
           setLoading(false);
         };
@@ -30664,9 +30709,9 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         setLoading(false);
       };
       const availableDestinations = from2 === "NZNE" ? AIRPORTS.filter((d) => d.code !== "NZNE") : AIRPORTS.filter((d) => d.code === "NZNE");
-      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "min-h-screen px-4 py-8 bg-gradient-to-br from-white to-blue-50", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-md", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-3xl font-bold text-blue-800 mb-6 text-center", children: "Search Flights" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-4 mb-6", children: [
+      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "min-h-screen px-4 py-10 bg-gradient-to-br from-blue-50 to-white", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-xl", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-4xl font-bold text-indigo-700 mb-8 text-center", children: "✈️ Search Your Flight" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-4 gap-4 mb-8", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-gray-700 font-medium mb-1", children: "From" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -30679,7 +30724,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                     setTo("NZNE");
                   }
                 },
-                className: "w-full px-4 py-2 border border-gray-300 rounded-lg",
+                className: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400",
                 children: AIRPORTS.map((d) => /* @__PURE__ */ jsxRuntimeExports.jsxs("option", { value: d.code, children: [
                   d.name,
                   " (",
@@ -30696,7 +30741,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
               {
                 value: to2,
                 onChange: (e) => setTo(e.target.value),
-                className: "w-full px-4 py-2 border border-gray-300 rounded-lg",
+                className: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400",
                 children: availableDestinations.map((d) => /* @__PURE__ */ jsxRuntimeExports.jsxs("option", { value: d.code, children: [
                   d.name,
                   " (",
@@ -30713,28 +30758,31 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
               {
                 selected: date,
                 onChange: (d) => setDate(d),
-                className: "w-full px-4 py-2 border border-gray-300 rounded-lg",
+                className: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400",
                 dateFormat: "yyyy-MM-dd"
               }
             )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-end", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
             "button",
             {
               onClick: handleSearch,
-              className: "mt-2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition",
-              children: loading ? "Searching..." : "Search Flights"
+              className: "w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold py-2 rounded-lg shadow hover:opacity-90 transition",
+              children: loading ? "Searching..." : "Search"
             }
-          )
+          ) })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: flights.length > 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-4", children: flights.map((flight) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-          FlightCard,
-          {
-            flight,
-            onBook: () => navigate(`/booking/${flight._id}`)
-          },
-          flight.flightNumber
-        )) }) : !loading && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-500 text-center", children: "No flights found." }) })
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-2xl font-semibold text-gray-800 mb-4", children: loading ? "Fetching flights..." : flights.length > 0 ? "Available Flights" : "No Flights Found" }),
+          flights.length > 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-4", children: flights.map((flight) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+            FlightCard,
+            {
+              flight,
+              onBook: () => navigate(`/booking/${flight._id}`)
+            },
+            flight.flightNumber
+          )) }) : !loading && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-500 text-center mt-4", children: "Please adjust search criteria and try again." })
+        ] })
       ] }) });
     };
     const API_BASE_URL = "/api";
@@ -30853,115 +30901,111 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       const arrLocal = arrTime.toLocaleString("en-US", {
         timeZone: flight.arrivalTimezone
       });
-      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-lg mx-auto mt-8 p-6 border rounded-lg shadow-md bg-white", children: [
-        storedUser && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-4 p-4 bg-blue-50 rounded", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-            "Logged in as: ",
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-xl mx-auto mt-10 p-6 border border-gray-200 rounded-2xl shadow-sm bg-white space-y-6", children: [
+        storedUser && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-4 p-4 bg-blue-100/40 border border-blue-200 rounded-lg", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-700", children: [
+            "👤 ",
             /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: passenger.name })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-            "Email: ",
-            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: passenger.email })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-600", children: [
+            "📧 ",
+            passenger.email
           ] })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-2xl font-bold mb-4", children: "Flight Booking" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-blue-50 p-4 rounded-lg mb-4", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-2xl font-bold text-blue-600", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-3xl font-bold text-gray-800 mb-4", children: "✈️ Flight Booking" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-blue-50 border border-blue-100 p-5 rounded-xl text-center", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-3xl font-bold text-blue-600", children: [
             "NZD $",
             flight.price.toLocaleString()
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-600", children: "All taxes included" })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-500 mt-1", children: "All taxes included" })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-6 space-y-2", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium", children: "Flight Details" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-                "Flight number: ",
-                flight.flightNumber
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-                "Aircraft: ",
-                flight.aircraftModel
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-                "Duration: ",
-                flight.durationMinutes,
-                " minutes"
-              ] })
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-gray-50 border border-gray-100 p-5 rounded-xl grid grid-cols-2 gap-4 text-sm", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-gray-800 mb-1", children: "Flight Details" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+              "🛩️ ",
+              flight.flightNumber,
+              " (",
+              flight.aircraftModel,
+              ")"
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium", children: "Capacity" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-green-600", children: [
-                "Available: ",
-                flight.availableSeats,
-                "/",
-                flight.totalSeats,
-                " seats"
-              ] })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+              "⏱ Duration: ",
+              Math.floor(flight.durationMinutes / 60),
+              "h",
+              " ",
+              flight.durationMinutes % 60,
+              "m"
             ] })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-gray-50 p-4 rounded-lg mt-4", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-3", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium", children: "Departure" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: depLocal }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm text-gray-600", children: [
-                flight.departureAirport,
-                " (",
-                flight.departureTimezone,
-                ")"
-              ] })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium", children: "Arrival" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: arrLocal }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm text-gray-600", children: [
-                flight.arrivalAirport,
-                " (",
-                flight.arrivalTimezone,
-                ")"
-              ] })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-gray-800 mb-1", children: "Seats" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-green-600", children: [
+              "Available: ",
+              flight.availableSeats,
+              "/",
+              flight.totalSeats
+            ] })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-gray-50 border border-gray-100 p-5 rounded-xl text-sm space-y-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-gray-800", children: "🛫 Departure" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: depLocal }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-500", children: [
+              flight.departureAirport,
+              " (",
+              flight.departureTimezone,
+              ")"
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-gray-800", children: "🛬 Arrival" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: arrLocal }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-500", children: [
+              flight.arrivalAirport,
+              " (",
+              flight.arrivalTimezone,
+              ")"
             ] })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSubmit, className: "space-y-4", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block font-medium", children: "Name" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-gray-700", children: "Name" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "input",
               {
                 type: "text",
-                name: "name",
                 value: passenger.name,
                 readOnly: true,
-                className: "w-full border rounded px-3 py-2 bg-gray-100"
+                className: "w-full border border-gray-300 rounded-lg px-4 py-2 bg-gray-100 text-gray-700"
               }
             )
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block font-medium", children: "Email" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-gray-700", children: "Email" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "input",
               {
                 type: "email",
-                name: "email",
                 value: passenger.email,
                 readOnly: true,
-                className: "w-full border rounded px-3 py-2 bg-gray-100"
+                className: "w-full border border-gray-300 rounded-lg px-4 py-2 bg-gray-100 text-gray-700"
               }
             )
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block font-medium", children: "Phone number" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-gray-700", children: "Phone number" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "input",
               {
                 type: "tel",
-                name: "phone",
                 value: passenger.phone,
                 onChange: handlePhoneChange,
                 required: true,
-                className: "w-full border rounded px-3 py-2"
+                className: "w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-700"
               }
             )
           ] }),
@@ -30970,14 +31014,15 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             {
               type: "submit",
               disabled: isSubmitting,
-              className: `w-full py-2 rounded transition ${isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700 text-white"}`,
-              children: isSubmitting ? "Processing..." : "Confirm Booking"
+              className: `w-full py-3 rounded-lg font-semibold text-white transition ${isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"}`,
+              children: isSubmitting ? "Processing..." : "✅ Confirm Booking"
             }
           )
         ] })
       ] });
     };
     const Invoice = () => {
+      var _a2, _b, _c;
       const { reference } = useParams();
       const [order, setOrder] = reactExports.useState(null);
       const [loading, setLoading] = reactExports.useState(true);
@@ -30993,19 +31038,19 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         });
       }, [reference]);
       if (loading) {
-        return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-center items-center min-h-screen", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" }) });
+        return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-center items-center min-h-screen", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500" }) });
       }
       if (error) {
-        return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-2xl mx-auto mt-8 p-6 bg-red-50 rounded-lg", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-red-600 text-center", children: error }) });
+        return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-xl mx-auto mt-12 p-6 bg-red-100 rounded-md text-center text-red-700", children: error });
       }
       if (!order) {
-        return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-2xl mx-auto mt-8 p-6 bg-yellow-50 rounded-lg", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-yellow-600 text-center", children: "Booking not found" }) });
+        return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-xl mx-auto mt-12 p-6 bg-yellow-100 rounded-md text-center text-yellow-700", children: "Booking not found" });
       }
       const depTime = new Date(order.departureTime);
       const arrTime = new Date(order.arrivalTime);
-      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-2xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-md", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center mb-8", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "inline-block p-3 rounded-full bg-green-100 mb-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-3xl mx-auto mt-12 p-6 bg-white rounded-xl shadow-lg", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center mb-10", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
             "svg",
             {
               className: "w-8 h-8 text-green-500",
@@ -31023,25 +31068,30 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
               )
             }
           ) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-2xl font-bold text-gray-800", children: "Booking Confirmed!" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-600", children: [
-            "Reference: ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-3xl font-semibold text-gray-800", children: "Booking Confirmed" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm text-gray-500", children: [
+            "Reference No: ",
             order.reference
           ] })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-6", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-bold text-lg border-b pb-2", children: "Flight Details" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-              "Flight Number: ",
-              order.flightNumber
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-8", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-bold text-gray-700 mb-4 border-b pb-2", children: "✈️ Flight Details" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-700", children: [
+              "Flight Number:",
+              " ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-medium", children: order.flightNumber })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-              order.departureCity,
-              " → ",
-              order.arrivalCity
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-700", children: [
+              "Route:",
+              " ",
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-medium", children: [
+                order.departureCity,
+                " → ",
+                order.arrivalCity
+              ] })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-700", children: [
               "Departure:",
               " ",
               depTime.toLocaleString("en-US", {
@@ -31050,7 +31100,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                 timeStyle: "short"
               })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-700", children: [
               "Arrival:",
               " ",
               arrTime.toLocaleString("en-US", {
@@ -31060,51 +31110,51 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
               })
             ] })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-bold text-lg border-b pb-2", children: "Passenger Details" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-bold text-gray-700 mb-4 border-b pb-2", children: "👤 Passenger" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-700", children: [
               "Name: ",
-              order.passenger.name
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-medium", children: (_a2 = order.passenger) == null ? void 0 : _a2.name })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-700", children: [
               "Email: ",
-              order.passenger.email
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-medium", children: (_b = order.passenger) == null ? void 0 : _b.email })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-gray-700", children: [
               "Phone: ",
-              order.passenger.phone
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-medium", children: (_c = order.passenger) == null ? void 0 : _c.phone })
             ] })
           ] })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-6 p-4 bg-gray-50 rounded-lg", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-bold text-lg mb-3", children: "Price Details" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Base Fare:" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-8 p-6 bg-gray-50 rounded-lg border", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-bold text-gray-700 mb-4", children: "💰 Price Summary" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between text-gray-700", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Base Fare" }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
                 "NZD $",
-                order.price.basePrice.toLocaleString()
+                order.price.basePrice.toFixed(2)
               ] })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Tax:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between text-gray-700", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Tax" }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
                 "NZD $",
-                order.price.tax.toLocaleString()
+                order.price.tax.toFixed(2)
               ] })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between font-bold text-lg border-t pt-2", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Total:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between font-semibold text-lg text-gray-800 border-t pt-3", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Total" }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
                 "NZD $",
-                order.price.total.toLocaleString()
+                order.price.total.toFixed(2)
               ] })
             ] })
           ] })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-8 text-center text-sm text-gray-600", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Booking confirmation has been sent to your email" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Please keep your reference number for future inquiries" })
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-10 text-center text-sm text-gray-500", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "A confirmation email has been sent to you." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Please keep your booking reference for any inquiries." })
         ] })
       ] });
     };
@@ -31149,52 +31199,56 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       if (loading) {
         return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-center items-center min-h-screen", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" }) });
       }
-      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-6xl mx-auto mt-8 px-4", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-3xl font-bold mb-6", children: "My Bookings" }),
-        error && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "bg-red-50 text-red-600 p-4 rounded mb-4", children: error }),
-        bookings.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center py-8", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-600", children: "No bookings found" }),
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-6xl mx-auto mt-10 px-6", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-4xl font-extrabold mb-10 text-center text-gray-900", children: "My Bookings" }),
+        error && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "bg-red-100 text-red-800 p-5 rounded-lg mb-8 text-center font-semibold", children: error }),
+        bookings.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center py-20", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-600 text-lg mb-8", children: "No bookings found" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "button",
             {
               onClick: () => navigate("/search"),
-              className: "mt-4 px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700",
+              className: "inline-block px-10 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition",
               children: "Book a Flight"
             }
           )
-        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid gap-6", children: bookings.map((booking) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-10", children: bookings.map((booking) => /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
-            className: "bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid md:grid-cols-4 gap-4", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { className: "font-semibold text-gray-900", children: [
+            className: "bg-white p-7 rounded-xl shadow-lg hover:shadow-xl transition",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col md:flex-row md:items-center md:justify-between md:gap-8", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-[200px]", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { className: "text-xl font-semibold text-gray-900 truncate", children: [
                   booking.departureCity,
                   " → ",
                   booking.arrivalCity
                 ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-600", children: new Date(booking.departureTime).toLocaleString() })
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-2 text-gray-600 text-sm", children: new Date(booking.departureTime).toLocaleString("en-US", {
+                  dateStyle: "medium",
+                  timeStyle: "short"
+                }) })
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-medium", children: "Flight" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: booking.flightNumber })
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "w-32 text-center mt-5 md:mt-0", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold text-gray-700 uppercase mb-1", children: "Flight" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-gray-800 truncate", children: booking.flightNumber })
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-medium", children: "Status" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "w-32 text-center mt-5 md:mt-0", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold text-gray-700 uppercase mb-1", children: "Status" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "span",
                   {
-                    className: `px-2 py-1 rounded text-sm ${booking.status === "cancelled" ? "bg-red-100 text-red-700" : "bg-green-100 text-green-700"}`,
+                    className: `inline-block px-4 py-1 rounded-full text-sm font-semibold ${booking.status === "cancelled" ? "bg-red-200 text-red-800" : "bg-green-200 text-green-800"}`,
                     children: booking.status.toUpperCase()
                   }
                 )
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-4 mt-6 md:mt-0 justify-center md:justify-end min-w-[230px]", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "button",
                   {
                     onClick: () => navigate(`/invoice/${booking.reference}`),
-                    className: "px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700",
+                    className: "px-6 py-2 bg-blue-600 text-white rounded-lg font-medium shadow hover:bg-blue-700 transition flex-1 md:flex-initial",
+                    style: { minWidth: "110px" },
                     children: "View Details"
                   }
                 ),
@@ -31202,7 +31256,8 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                   "button",
                   {
                     onClick: () => handleCancel(booking.reference),
-                    className: "px-4 py-2 bg-white text-red-600 border border-red-600 rounded hover:bg-red-50",
+                    className: "px-6 py-2 bg-red-600 text-white rounded-lg font-medium shadow hover:bg-red-700 transition flex-1 md:flex-initial",
+                    style: { minWidth: "110px" },
                     children: "Cancel"
                   }
                 )
@@ -31229,4 +31284,4 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   }
 });
 export default require_index_001();
-//# sourceMappingURL=index-DcuW1olx.js.map
+//# sourceMappingURL=index-BGxdIbxt.js.map

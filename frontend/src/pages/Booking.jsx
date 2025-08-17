@@ -101,110 +101,114 @@ const Booking = () => {
   });
 
   return (
-    <div className="max-w-lg mx-auto mt-8 p-6 border rounded-lg shadow-md bg-white">
-      {/* User Info */}
+    <div className="max-w-xl mx-auto mt-10 p-6 border border-gray-200 rounded-2xl shadow-sm bg-white space-y-6">
+      {/* 顶部用户信息 */}
       {storedUser && (
-        <div className="mb-4 p-4 bg-blue-50 rounded">
-          <p>
-            Logged in as: <strong>{passenger.name}</strong>
+        <div className="mb-4 p-4 bg-blue-100/40 border border-blue-200 rounded-lg">
+          <p className="text-gray-700">
+            👤 <strong>{passenger.name}</strong>
           </p>
-          <p>
-            Email: <strong>{passenger.email}</strong>
-          </p>
+          <p className="text-gray-600">📧 {passenger.email}</p>
         </div>
       )}
 
-      {/* Flight Details */}
-      <h2 className="text-2xl font-bold mb-4">Flight Booking</h2>
+      {/* 页面标题 */}
+      <h1 className="text-3xl font-bold text-gray-800 mb-4">
+        ✈️ Flight Booking
+      </h1>
 
-      {/* ...existing image sections... */}
-
-      {/* Price Display */}
-      <div className="bg-blue-50 p-4 rounded-lg mb-4">
-        <p className="text-2xl font-bold text-blue-600">
+      {/* 价格展示 */}
+      <div className="bg-blue-50 border border-blue-100 p-5 rounded-xl text-center">
+        <p className="text-3xl font-bold text-blue-600">
           NZD ${flight.price.toLocaleString()}
         </p>
-        <p className="text-sm text-gray-600">All taxes included</p>
+        <p className="text-sm text-gray-500 mt-1">All taxes included</p>
       </div>
 
-      {/* Flight Information */}
-      <div className="mb-6 space-y-2">
-        <div className="grid grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg">
-          <div>
-            <p className="font-medium">Flight Details</p>
-            <p>Flight number: {flight.flightNumber}</p>
-            <p>Aircraft: {flight.aircraftModel}</p>
-            <p>Duration: {flight.durationMinutes} minutes</p>
-          </div>
-          <div>
-            <p className="font-medium">Capacity</p>
-            <p className="text-green-600">
-              Available: {flight.availableSeats}/{flight.totalSeats} seats
-            </p>
-          </div>
+      {/* 航班基本信息 */}
+      <div className="bg-gray-50 border border-gray-100 p-5 rounded-xl grid grid-cols-2 gap-4 text-sm">
+        <div>
+          <p className="font-medium text-gray-800 mb-1">Flight Details</p>
+          <p>
+            🛩️ {flight.flightNumber} ({flight.aircraftModel})
+          </p>
+          <p>
+            ⏱ Duration: {Math.floor(flight.durationMinutes / 60)}h{" "}
+            {flight.durationMinutes % 60}m
+          </p>
         </div>
-
-        <div className="bg-gray-50 p-4 rounded-lg mt-4">
-          <div className="mb-3">
-            <p className="font-medium">Departure</p>
-            <p>{depLocal}</p>
-            <p className="text-sm text-gray-600">
-              {flight.departureAirport} ({flight.departureTimezone})
-            </p>
-          </div>
-          <div>
-            <p className="font-medium">Arrival</p>
-            <p>{arrLocal}</p>
-            <p className="text-sm text-gray-600">
-              {flight.arrivalAirport} ({flight.arrivalTimezone})
-            </p>
-          </div>
+        <div>
+          <p className="font-medium text-gray-800 mb-1">Seats</p>
+          <p className="text-green-600">
+            Available: {flight.availableSeats}/{flight.totalSeats}
+          </p>
         </div>
       </div>
 
-      {/* Booking Form */}
+      {/* 起降信息 */}
+      <div className="bg-gray-50 border border-gray-100 p-5 rounded-xl text-sm space-y-3">
+        <div>
+          <p className="font-medium text-gray-800">🛫 Departure</p>
+          <p>{depLocal}</p>
+          <p className="text-gray-500">
+            {flight.departureAirport} ({flight.departureTimezone})
+          </p>
+        </div>
+        <div>
+          <p className="font-medium text-gray-800">🛬 Arrival</p>
+          <p>{arrLocal}</p>
+          <p className="text-gray-500">
+            {flight.arrivalAirport} ({flight.arrivalTimezone})
+          </p>
+        </div>
+      </div>
+
+      {/* 表单填写 */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block font-medium">Name</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Name
+          </label>
           <input
             type="text"
-            name="name"
             value={passenger.name}
             readOnly
-            className="w-full border rounded px-3 py-2 bg-gray-100"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-gray-100 text-gray-700"
           />
         </div>
         <div>
-          <label className="block font-medium">Email</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Email
+          </label>
           <input
             type="email"
-            name="email"
             value={passenger.email}
             readOnly
-            className="w-full border rounded px-3 py-2 bg-gray-100"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-gray-100 text-gray-700"
           />
         </div>
         <div>
-          <label className="block font-medium">Phone number</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Phone number
+          </label>
           <input
             type="tel"
-            name="phone"
             value={passenger.phone}
             onChange={handlePhoneChange}
             required
-            className="w-full border rounded px-3 py-2"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-700"
           />
         </div>
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full py-2 rounded transition ${
+          className={`w-full py-3 rounded-lg font-semibold text-white transition ${
             isSubmitting
               ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700 text-white"
+              : "bg-blue-600 hover:bg-blue-700"
           }`}
         >
-          {isSubmitting ? "Processing..." : "Confirm Booking"}
+          {isSubmitting ? "Processing..." : "✅ Confirm Booking"}
         </button>
       </form>
     </div>
